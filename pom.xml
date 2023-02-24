@@ -5,6 +5,7 @@
     <packaging>pom</packaging>
     <modules>
         <module>generics</module>
+        <module>Collections</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
