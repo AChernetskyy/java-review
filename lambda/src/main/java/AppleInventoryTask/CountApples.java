@@ -13,7 +13,9 @@ public class CountApples {
         List<Apple> appleColor = filterApples(appleList, new GetColor());
         System.out.println(appleCount+" -- heavy apples");
         System.out.println(appleColor+" -- green apples");
-        Sort sort = a-> true;
+
+        AppleDescription byColor = (a) -> "A light "+a.getColor()+" apple";
+
     }
 
     public static List<Apple>filterApples(List<Apple>inventory, Sort sort){
