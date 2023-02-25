@@ -14,7 +14,7 @@ public class MapReview {
         list.add(1);
         list.add(1);
         System.out.println(findCount((ArrayList<Integer>) list));
-        int[]arr = new int[]{5,7,8,90};
+        int[]arr = {5,7,8,90};
         int target = 98;
         System.out.println(Arrays.toString(twoSum(arr, target)));
 
@@ -73,5 +73,20 @@ public class MapReview {
             }
         }
         return null;
+    }
+
+    // my Optimal Solution O(n)
+    public static int[] twoSum2(int[] array, int target){
+        //Create HashMap
+        Map<Integer,Integer> map=new HashMap<>();
+
+        //Iterate over the array.
+        // If a potential match exists return that indices else put the array value and index to map
+        for(int i=0;i< array.length;i++){
+            int potentialMatch=target-array[i];
+            if(map.containsKey(potentialMatch)) return new int[]{i, map.get(potentialMatch)};
+            else map.put(array[i],i);
+        }
+        return new int[]{};
     }
 }
