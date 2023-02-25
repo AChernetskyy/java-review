@@ -1,3 +1,6 @@
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class ArraySorting {
 
     public static void main(String[] args) {
