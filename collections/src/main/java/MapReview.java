@@ -8,12 +8,15 @@ public class MapReview {
         map.put(3, "Hill");
         System.out.println(map.get(1));
         System.out.println(findFirstUniqueChar("aaabxxxx"));
-        ArrayList<Integer>list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
         list.add(1);
         list.add(2);
         list.add(1);
         list.add(1);
         System.out.println(findCount((ArrayList<Integer>) list));
+        int[]arr = new int[]{5,7,8,90};
+        int target = 98;
+        System.out.println(Arrays.toString(twoSum(arr, target)));
 
     }
 
@@ -51,6 +54,22 @@ public class MapReview {
         for (Integer num : arr) {
             if (map.get(num) == 1) {
                 return num;
+            }
+        }
+        return null;
+    }
+
+    /*
+    Task--> Two Sum
+    Given array of int, return two numbers such that they add up to target
+     */
+    static int[] twoSum(int[] arr, int num) {
+
+        for (int i = 0; i < arr.length - 1; i++) {
+            for (int j = 1; j < arr.length; j++) {
+                if (arr[i] + arr[j] == num) {
+                    return new int[]{i, j};
+                }
             }
         }
         return null;
