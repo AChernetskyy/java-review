@@ -1,4 +1,4 @@
-package AppleInventoryTask;
+package appleInventoryTask;
 
 import java.util.ArrayList;
 import java.util.List;

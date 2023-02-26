@@ -1,8 +1,7 @@
-package OrangeInventoryTask;
+package orangeInventoryTask;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 import java.util.function.Function;
 
 public class TestOrange {
@@ -17,16 +16,22 @@ public class TestOrange {
        // OrangeFilter<Orange> getColor = orange -> "A " + (orange.getWeight() < 150 ? "Light" : "Heavy") + " " + orange.getColor() + " Orange";
         //Implementation by using Java ready interfaces -->Function
         Function<Orange, String> getColor = orange -> "A " + (orange.getWeight() < 150 ?"Light" : "Heavy") + " " + orange.getColor() + " Orange";
-        formatedInventory(inventory, getColor);
+        formatInventory(inventory, getColor);
 
-        //OrangeFilter<Orange> getWeight = orange -> "An orange of "+orange.getWeight()+" g";
+        /*OrangeFilter<Orange> getWeight = orange -> "An orange of "+orange.getWeight()+" g";
+           **********************************
         //Implementation by using Java ready interfaces-->Function
-        Function<Orange, String> getWeight = orange -> "An orange of "+orange.getWeight()+" g";
-        formatedInventory(inventory, getWeight);
+        //Function<Orange, String> getWeight = orange -> "An orange of "+orange.getWeight()+" g";
+       // formatedInventory(inventory, getWeight);
+        *********************************
+        *
+        Or you can implement interface directly in the method
+         */
+        formatInventory(inventory, orange -> "An orange of "+orange.getWeight() +" g");
 
     }
 
-    public static void formatedInventory(List<Orange>list, Function filter){
+    public static void formatInventory(List<Orange>list, Function<Orange,String> filter){
         for (Orange orange: list) {
             System.out.println(filter.apply(orange));
         }

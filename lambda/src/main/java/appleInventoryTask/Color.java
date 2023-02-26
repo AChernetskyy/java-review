@@ -1,4 +1,4 @@
-package AppleInventoryTask;
+package appleInventoryTask;
 
 public enum Color {
     GREEN,

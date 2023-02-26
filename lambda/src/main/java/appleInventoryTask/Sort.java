@@ -1,6 +1,5 @@
-package AppleInventoryTask;
+package appleInventoryTask;
 
-import java.util.List;
 @FunctionalInterface
 public interface Sort <T> {
     boolean test(T t);

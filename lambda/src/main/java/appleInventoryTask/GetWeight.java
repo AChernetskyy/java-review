@@ -1,4 +1,4 @@
-package AppleInventoryTask;
+package appleInventoryTask;
 
 public class GetWeight implements Sort<Apple>{
     @Override

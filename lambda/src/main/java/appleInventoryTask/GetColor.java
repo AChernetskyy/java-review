@@ -1,4 +1,4 @@
-package AppleInventoryTask;
+package appleInventoryTask;
 
 public class GetColor implements Sort<Apple>{
     @Override

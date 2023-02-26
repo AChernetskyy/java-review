@@ -1,4 +1,4 @@
-package OrangeInventoryTask;
+package orangeInventoryTask;
 
 import lombok.Builder;
 import lombok.Data;

@@ -1,6 +1,4 @@
-package AppleInventoryTask;
-
-import java.util.ArrayList;
+package appleInventoryTask;
 
 public class Apple {
 private  int weight;
