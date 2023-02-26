@@ -6,14 +6,14 @@ import java.util.function.Consumer;
 
 public class TestCalculator {
     public static void main(String[] args) {
-        Calculate c1 = (x, y) -> Calculator.sumTwo(x, y);// In this instance we are using custom interface -->> Calculate
+        Calculate c1 = (x, y) -> Calculator.findSum(x, y);// In this instance we are using custom interface -->> Calculate
         c1.calculate(4, 6);
 
-        BiConsumer<Integer, Integer> b1 = (x, y) -> Calculator.sumTwo(x, y);//In this instance we are using java ready interface -->> BiConsumer
+        BiConsumer<Integer, Integer> b1 = (x, y) -> Calculator.findSum(x, y);//In this instance we are using java ready interface -->> BiConsumer
         b1.accept(2, 3);
 
         //Reference to a static method
-        Calculate c2 = Calculator::sumTwo;
+        Calculate c2 = Calculator::findSum;
         c2.calculate(6, 7);
 
         BiConsumer<Integer, Integer> b2 = Calculator::multiply;

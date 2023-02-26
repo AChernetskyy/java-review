@@ -1,7 +1,7 @@
 package doble_colon_operator;
 
 public class Calculator {
-    public static void sumTwo(int x, int y) {
+    public static void findSum(int x, int y) {
         System.out.println("Sum of two numbers is " + (x + y));
     }
 
