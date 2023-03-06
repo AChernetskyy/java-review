@@ -7,6 +7,8 @@
         <module>generics</module>
         <module>Collections</module>
         <module>lambda</module>
+        <module>streams</module>
+        <module>taskPractice</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
