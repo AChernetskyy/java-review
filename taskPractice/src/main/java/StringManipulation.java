@@ -6,6 +6,13 @@ public class StringManipulation {
     public static void main(String[] args) {
         System.out.println(sumOfString("123abcsd"));
         System.out.println(validPassword("240784Ac"));
+        fibonacci();
+        String str = "asdfdfd4555";
+        String newStr = "";
+        for (Character each : str.toCharArray()) {
+             if(Character.isLetter(each)) newStr+=each;
+        }
+        System.out.println(newStr);
     }
 
     /*
@@ -41,6 +48,13 @@ public class StringManipulation {
             }
         }
 return valid;
+    }
+
+    /*
+        Fibonacci task
+         */
+    public static void fibonacci(){
+        Stream.iterate(new int[]{0,1},t-> new int[]{t[1],t[0]+t[1]}).limit(10).forEach(t-> System.out.println(Arrays.toString(t)));
     }
 
 }

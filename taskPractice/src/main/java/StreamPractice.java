@@ -36,11 +36,5 @@ public class StreamPractice {
          */
         DishData.dishList().stream().filter(dish -> dish.getCalories()<400).sorted(Comparator.comparing(Dish::getCalories)).map(Dish::getName).forEach(System.out::println);
         System.out.println(spacing);
-
-        /*
-        How to print Stream<List<String>> with flat map TODO: FlatMap
-         */
-
-
     }
 }
