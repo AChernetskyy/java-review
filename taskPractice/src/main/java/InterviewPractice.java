@@ -15,20 +15,21 @@ public class InterviewPractice {
         System.out.println(removeDuplicates("aaaabbbbsssddd"));
         System.out.println(uniqueCharacter("affffkjjj"));
         System.out.println(sumOfNumbers("123hkkk"));
-        System.out.println(minValueArr(new Integer[]{1,2,3,4,5}));
-        System.out.println(Arrays.toString(addTwoArr(new Integer[]{3,4,5,6}, new Integer[]{4,5})) );
+        System.out.println(minValueArr(new Integer[]{1, 2, 3, 4, 5}));
+        System.out.println(Arrays.toString(addTwoArr(new Integer[]{3, 4, 5, 6}, new Integer[]{4, 5})));
         System.out.println(Arrays.toString(addZeroToTheEnd(new Integer[]{0, 0, 9, 0, 3, 4, 5})));
         System.out.println(Arrays.toString(moveZeros(new Integer[]{0, 0, 9, 0, 3, 4, 5})));
         System.out.println(EvenOrOdd(4));
         List<Integer> primeNum = new ArrayList<>();
-        for (int i = 2; i <1000 ; i++) {
-            if(isPrimeNumber(i)) primeNum.add(i);
+        for (int i = 2; i < 1000; i++) {
+            if (isPrimeNumber(i)) primeNum.add(i);
         }
         System.out.println(repeatedNum(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 4, 5, 5, 4))));
-        System.out.println(Arrays.toString(twoSum(new int[]{2,5,5,11}, 10)));
+        System.out.println(Arrays.toString(twoSum(new int[]{2, 5, 5, 11}, 10)));
         System.out.println(removeSpace("Anton   is    a great QA  "));
         System.out.println(isAnagram("iceman", "cinema"));
-        fibinaciArr(9);
+        fibinaciArr(0);
+        findMissingNumber(new int[]{3,5,7,8});
 
     }
 
@@ -96,107 +97,120 @@ public class InterviewPractice {
         return newStr;
     }
 
-    public static int sumOfNumbers(String str){
+    public static int sumOfNumbers(String str) {
         int sum = 0;
-        for (Character each: str.toCharArray()) {
-            if(Character.isDigit(each)){
-                sum+=Integer.parseInt(""+each);
+        for (Character each : str.toCharArray()) {
+            if (Character.isDigit(each)) {
+                sum += Integer.parseInt("" + each);
             }
         }
         return sum;
     }
 
-    public static int maxValueArr(Integer[]arr){
-        return  Stream.of(arr).reduce(Integer::max).get();
+    public static int maxValueArr(Integer[] arr) {
+        return Stream.of(arr).reduce(Integer::max).get();
     }
-    public static int minValueArr(Integer[]arr){
+
+    public static int minValueArr(Integer[] arr) {
         return Stream.of(arr).reduce(Integer::min).get();
     }
 
-    public static Integer [] addTwoArr(Integer[]arr, Integer[]arr2){
-      return //ArrayUtils.addAll(arr, arr2);-->First solution
-      Stream.concat(Stream.of(arr), Stream.of(arr2)).toArray(Integer[]::new);//-->>Second solution
+    public static Integer[] addTwoArr(Integer[] arr, Integer[] arr2) {
+        return //ArrayUtils.addAll(arr, arr2);-->First solution
+                Stream.concat(Stream.of(arr), Stream.of(arr2)).toArray(Integer[]::new);//-->>Second solution
     }
 
-    public static Integer[]addZeroToTheEnd(Integer[]arr){
-        List<Integer>zero = new ArrayList<>();
-        List<Integer>nonzero = new ArrayList<>();
-        for (Integer each: arr) {
-            if(each==0){ zero.add(each);}
-            else {nonzero.add(each);
+    public static Integer[] addZeroToTheEnd(Integer[] arr) {
+        List<Integer> zero = new ArrayList<>();
+        List<Integer> nonzero = new ArrayList<>();
+        for (Integer each : arr) {
+            if (each == 0) {
+                zero.add(each);
+            } else {
+                nonzero.add(each);
             }
         }
         List<Integer> newArr = new ArrayList<>();
-         newArr.addAll(nonzero);
-         newArr.addAll(zero);
-         return newArr.toArray(Integer[]::new);
+        newArr.addAll(nonzero);
+        newArr.addAll(zero);
+        return newArr.toArray(Integer[]::new);
 
 
     }
 
-    public static Integer[]moveZeros(Integer[]arr){
-      return   Stream.of(arr).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
+    public static Integer[] moveZeros(Integer[] arr) {
+        return Stream.of(arr).sorted(Comparator.reverseOrder()).toArray(Integer[]::new);
     }
 
-    public static String EvenOrOdd(int num){
-        return num%2==0 ? "Even" :"Odd";
+    public static String EvenOrOdd(int num) {
+        return num % 2 == 0 ? "Even" : "Odd";
     }
 
-    public static Integer factorial(Integer num){
+    public static Integer factorial(Integer num) {
         int result = 1;
-        for (int i = 1; i <=num ; i++) {
-            result*=i;
+        for (int i = 1; i <= num; i++) {
+            result *= i;
         }
         return result;
     }
 
-   public static Boolean isPrimeNumber(int num){
-        if(num<2) return false;
+    public static Boolean isPrimeNumber(int num) {
+        if (num < 2) return false;
 
-       for (int i = 2; i <num ; i++) {
-           if(num%i == 0) return false;
-       }
-       return true;
-   }
+        for (int i = 2; i < num; i++) {
+            if (num % i == 0) return false;
+        }
+        return true;
+    }
 
-   public static String repeatedNum(List<Integer>arr){
+    public static String repeatedNum(List<Integer> arr) {
         Map<Integer, Integer> map = new HashMap<>();
 
-       for (Integer each: arr) {
-           if(map.containsKey(each)){
-               map.put(each, map.get(each)+1);
-           }else map.put(each, 1);
-       }
-       map.entrySet().removeIf(entry->entry.getKey()==1);
-     return map.toString();
-   }
+        for (Integer each : arr) {
+            if (map.containsKey(each)) {
+                map.put(each, map.get(each) + 1);
+            } else map.put(each, 1);
+        }
+        map.entrySet().removeIf(entry -> entry.getKey() == 1);
+        return map.toString();
+    }
 
     public static int[] twoSum(int[] nums, int target) {
-        for(int i=0; i<nums.length-1; i++){
-            for(int j=1; j<nums.length; j++ )
-                if(nums[i]+nums[j]==target && i!=j){
-                    return new int[]{i,j};
+        for (int i = 0; i < nums.length - 1; i++) {
+            for (int j = 1; j < nums.length; j++)
+                if (nums[i] + nums[j] == target && i != j) {
+                    return new int[]{i, j};
                 }
         }
         return null;
     }
 
-    public static String removeSpace(String str){
-       return str.replaceAll("\\s+", " ");
+    public static String removeSpace(String str) {
+        return str.replaceAll("\\s+", " ");
     }
 
-    public static Boolean isAnagram(String str1, String str2 ){
-        char[]arr1 =str1.toCharArray();
-        char[]arr2 =str2.toCharArray();
-       Arrays.sort(arr1);
-       Arrays.sort(arr2);
-       return Arrays.equals(arr1,arr2);
+    public static Boolean isAnagram(String str1, String str2) {
+        char[] arr1 = str1.toCharArray();
+        char[] arr2 = str2.toCharArray();
+        Arrays.sort(arr1);
+        Arrays.sort(arr2);
+        return Arrays.equals(arr1, arr2);
     }
 
-    public static void fibinaciArr(int limit){
-        Stream.iterate(new int[]{0,1}, each ->new int[]{each[1],each[0]+each[1]}).limit(limit).forEach(each -> System.out.print(each[0]+" "));
+    public static void fibinaciArr(int limit) {
+        //Stream.iterate(new int[]{0,1}, each ->new int[]{each[1],each[0]+each[1]}).limit(limit).forEach(each -> System.out.print(each[0]+" ")); // without map
+        Stream.iterate(new int[]{0, 1}, each -> new int[]{each[1], each[0] + each[1]}).limit(limit).map(n -> n[0]).forEach(System.out::println);//with map
     }
 
+    public static void findMissingNumber(int[] arr) {
+        //Arrays.sort(arr);
+        int index = 0;
+        for (int i = arr[index]; i < arr[arr.length-1]; i++) {
+             if(arr[index]==i){
+                 index++;
+             }else System.out.println(i);
+        }
+    }
 
 
 }
