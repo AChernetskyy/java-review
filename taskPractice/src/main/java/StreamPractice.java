@@ -14,7 +14,7 @@ public class StreamPractice {
         System.out.println(spacing);
 
         /*
-        Task-->>Print the name of each dish less then 400 cal
+        Task-->>Print the name of each dish less than 400 cal
          */
         DishData.dishList().stream().filter(dish -> dish.getCalories()<400).map(Dish::getName).forEach(System.out::println);
         System.out.println(spacing);

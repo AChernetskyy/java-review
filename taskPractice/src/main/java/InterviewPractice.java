@@ -1,6 +1,7 @@
 import org.apache.commons.lang3.ArrayUtils;
 
 import javax.sound.midi.Soundbank;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -30,6 +31,11 @@ public class InterviewPractice {
         System.out.println(isAnagram("iceman", "cinema"));
         fibinaciArr(0);
         findMissingNumber(new int[]{3,5,7,8});
+        System.out.println(reverseStrLoop("Dog"));
+        System.out.println(reverseEachWord("Great day today"));
+        Set<String> abx = new LinkedHashSet(List.of("Katy", "John", "Katty"));
+        System.out.println(abx.toString().replaceAll("[\\[\\],]",""));
+        missingNumberArr(new Integer[]{4, 5, 7, 9});
 
     }
 
@@ -209,6 +215,35 @@ public class InterviewPractice {
              if(arr[index]==i){
                  index++;
              }else System.out.println(i);
+        }
+    }
+
+    public static String reverseStrLoop(String str){
+        String newStr = "";
+        for(int i=str.length()-1; i>=0; i--){
+            newStr+=str.charAt(i);
+        }
+        return newStr.toLowerCase();
+    }
+
+    public static String reverseEachWord(String str){
+        String[] arr = str.split(" ");
+        String newStr= "";
+
+        for(int i=arr.length-1; i>=0; i--){
+            newStr+=arr[i]+" ";
+        }
+        return newStr.trim();
+    }
+
+
+    //Print all missing numbers
+    public static void missingNumberArr(Integer []arr){
+Set<Integer>newArr = new LinkedHashSet<>(Arrays.asList(arr));
+        for (int i=0; i<arr[arr.length-1]; i++){
+            if(newArr.add(i)){
+                System.out.println(i);
+            }
         }
     }
 
