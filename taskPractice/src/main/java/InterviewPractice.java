@@ -1,9 +1,11 @@
 import org.apache.commons.lang3.ArrayUtils;
+import org.testng.annotations.Test;
 
 import javax.sound.midi.Soundbank;
 import java.lang.reflect.Array;
 import java.util.*;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 import java.util.stream.Stream;
 
 public class InterviewPractice {
@@ -30,12 +32,13 @@ public class InterviewPractice {
         System.out.println(removeSpace("Anton   is    a great QA  "));
         System.out.println(isAnagram("iceman", "cinema"));
         fibinaciArr(0);
-        findMissingNumber(new int[]{3,5,7,8});
+        findMissingNumber(new int[]{3, 5, 7, 8});
         System.out.println(reverseStrLoop("Dog"));
         System.out.println(reverseEachWord("Great day today"));
         Set<String> abx = new LinkedHashSet(List.of("Katy", "John", "Katty"));
-        System.out.println(abx.toString().replaceAll("[\\[\\],]",""));
+        System.out.println(abx.toString().replaceAll("[\\[\\],]", ""));
         missingNumberArr(new Integer[]{4, 5, 7, 9});
+        System.out.println(isPrimeNum(7));
 
     }
 
@@ -211,40 +214,61 @@ public class InterviewPractice {
     public static void findMissingNumber(int[] arr) {
         //Arrays.sort(arr);
         int index = 0;
-        for (int i = arr[index]; i < arr[arr.length-1]; i++) {
-             if(arr[index]==i){
-                 index++;
-             }else System.out.println(i);
+        for (int i = arr[index]; i < arr[arr.length - 1]; i++) {
+            if (arr[index] == i) {
+                index++;
+            } else System.out.println(i);
         }
     }
 
-    public static String reverseStrLoop(String str){
+    public static String reverseStrLoop(String str) {
         String newStr = "";
-        for(int i=str.length()-1; i>=0; i--){
-            newStr+=str.charAt(i);
+        for (int i = str.length() - 1; i >= 0; i--) {
+            newStr += str.charAt(i);
         }
         return newStr.toLowerCase();
     }
 
-    public static String reverseEachWord(String str){
+    public static String reverseEachWord(String str) {
         String[] arr = str.split(" ");
-        String newStr= "";
+        String newStr = "";
 
-        for(int i=arr.length-1; i>=0; i--){
-            newStr+=arr[i]+" ";
+        for (int i = arr.length - 1; i >= 0; i--) {
+            newStr += arr[i] + " ";
         }
         return newStr.trim();
     }
 
-
     //Print all missing numbers
-    public static void missingNumberArr(Integer []arr){
-Set<Integer>newArr = new LinkedHashSet<>(Arrays.asList(arr));
-        for (int i=0; i<arr[arr.length-1]; i++){
-            if(newArr.add(i)){
+    public static void missingNumberArr(Integer[] arr) {
+        Set<Integer> newArr = new LinkedHashSet<>(Arrays.asList(arr));
+        for (int i = 0; i < arr[arr.length - 1]; i++) {
+            if (newArr.add(i)) {
                 System.out.println(i);
             }
         }
+    }
+
+    public static boolean isPrimeNum(int num) {
+        return IntStream.rangeClosed(2, num / 2).noneMatch(p -> num % p == 0);
+    }
+
+    @Test
+    public void TestArray() {
+        int[] arr = new int[]{1, 2, 3, 4, 5, 6};
+        IntStream streamArr = Arrays.stream(arr);
+        streamArr.forEach(System.out::println);
+        Stream.generate(new Random()::nextInt).limit(10).forEach(System.out::println);
+    }
+
+    @Test
+    public void CountChars() {
+        String[] arr = new String[]{"Java", "Jickel", "Sammyli"};
+        Arrays.stream(arr).filter(s -> s.length() > 4 && s.contains("a")).forEach(System.out::println);
+        int num = 8;
+        Boolean isPalindrom = IntStream.rangeClosed(2, num / 2).noneMatch(each -> num % each == 0);
+        System.out.println(isPalindrom);
+
     }
 
 
