@@ -1,4 +1,5 @@
 import org.apache.commons.lang3.ArrayUtils;
+import org.springframework.beans.factory.annotation.Value;
 import org.testng.annotations.Test;
 
 import javax.sound.midi.Soundbank;
@@ -37,7 +38,7 @@ public class InterviewPractice {
         System.out.println(reverseEachWord("Great day today"));
         Set<String> abx = new LinkedHashSet(List.of("Katy", "John", "Katty"));
         System.out.println(abx.toString().replaceAll("[\\[\\],]", ""));
-        missingNumberArr(new Integer[]{4, 5, 7, 9});
+        System.out.println(missingNumberArr(new int[]{3, 0, 1}));
         System.out.println(isPrimeNum(7));
 
     }
@@ -240,13 +241,14 @@ public class InterviewPractice {
     }
 
     //Print all missing numbers
-    public static void missingNumberArr(Integer[] arr) {
-        Set<Integer> newArr = new LinkedHashSet<>(Arrays.asList(arr));
-        for (int i = 0; i < arr[arr.length - 1]; i++) {
-            if (newArr.add(i)) {
-                System.out.println(i);
-            }
+    public static int missingNumberArr(int[] arr) {
+        int n = arr.length;
+        int sum = n * (n + 1) / 2;
+        int sum2 = 0;
+        for (int each : arr) {
+            sum2 += each;
         }
+        return sum;
     }
 
     public static boolean isPrimeNum(int num) {
@@ -260,15 +262,44 @@ public class InterviewPractice {
         streamArr.forEach(System.out::println);
         Stream.generate(new Random()::nextInt).limit(10).forEach(System.out::println);
     }
-
     @Test
     public void CountChars() {
+        int[] newArr = new int[Integer.MAX_VALUE];
+        System.gc();
         String[] arr = new String[]{"Java", "Jickel", "Sammyli"};
         Arrays.stream(arr).filter(s -> s.length() > 4 && s.contains("a")).forEach(System.out::println);
+        Arrays.stream(arr).map(p -> {
+            System.out.println();
+            return p;
+        }).sorted();
         int num = 8;
         Boolean isPalindrom = IntStream.rangeClosed(2, num / 2).noneMatch(each -> num % each == 0);
         System.out.println(isPalindrom);
+    }
+    @Test
+    public void isPalindromInt() {
+        int num = 121;
+        String str = String.valueOf(num);
+        String revStr = new StringBuilder(num).reverse().toString();
+        int revNum = Integer.valueOf(revStr);
+        Boolean check = num == revNum;
+        System.out.println(check);
+    }
+    @Test
+    public void longestPrefix() {
+        String[] arr = new String[]{"flower", "flow", "flight"};
+        String check = arr[0];
 
+        for (int i = 0; i < arr.length; i++) {
+
+            while (arr[i].indexOf(check) != 0) {
+                check = check.substring(0, check.length() - 1);
+                if (check.isEmpty()) {
+                    System.out.println("");
+                }
+            }
+        }
+        System.out.println(check);
     }
 
 
