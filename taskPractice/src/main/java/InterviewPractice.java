@@ -40,6 +40,7 @@ public class InterviewPractice {
         System.out.println(abx.toString().replaceAll("[\\[\\],]", ""));
         System.out.println(missingNumberArr(new int[]{3, 0, 1}));
         System.out.println(isPrimeNum(7));
+        System.out.println(contDup(new int[]{1, 2, 3}));
 
     }
 
@@ -262,6 +263,7 @@ public class InterviewPractice {
         streamArr.forEach(System.out::println);
         Stream.generate(new Random()::nextInt).limit(10).forEach(System.out::println);
     }
+
     @Test
     public void CountChars() {
         int[] newArr = new int[Integer.MAX_VALUE];
@@ -276,6 +278,7 @@ public class InterviewPractice {
         Boolean isPalindrom = IntStream.rangeClosed(2, num / 2).noneMatch(each -> num % each == 0);
         System.out.println(isPalindrom);
     }
+
     @Test
     public void isPalindromInt() {
         int num = 121;
@@ -285,6 +288,7 @@ public class InterviewPractice {
         Boolean check = num == revNum;
         System.out.println(check);
     }
+
     @Test
     public void longestPrefix() {
         String[] arr = new String[]{"flower", "flow", "flight"};
@@ -302,5 +306,46 @@ public class InterviewPractice {
         System.out.println(check);
     }
 
+    @Test
+    public void containsDuplicate() {
+        int[] arr = new int[]{1, 2, 3};
+
+        //Fast run time but large memory consumtion
+        Set<Integer> list = new HashSet<>();
+        for (int each : arr) {
+            if (!list.add(each)) {
+                System.out.println(true);
+                break;
+            }
+        }
+        /*
+        Slow time 28ms but low memory cosumtion
+        Set<Integer>list = new HashSet<>(Arrays.stream(arr).boxed().toList());
+        return list.size() != arr.length;
+         */
+    }
+
+    public static boolean contDup(int[] arr) {
+        return arr.length != new HashSet<>(Arrays.stream(arr).boxed().toList()).size();
+    }
+
+    @Test
+    public void validEmail() {
+        String[] emails = new String[]{"test.email+alex@leetcode.com", "test.e.mail+bob.cathy@leetcode.com", "testemail+david@lee.tcode.com"};
+
+        Set<String> validEmails = new HashSet<>();
+
+        for (String each : emails) {
+
+            String[] arr = each.split("@");
+
+            arr[0] = arr[0].split("\\+")[0].replace(".", "");//this way split will not throw an exception
+
+            //-->>Another way to extract all characters before "+" but substring will throw outOfBond exception if + is missing
+            //arr[0] = arr[0].contains("+") ? arr[0].substring(0, arr[0].indexOf("+")).replace(".", "") :arr[0].replace(".", "");
+            validEmails.add(arr[0] + "@" + arr[1]);
+        }
+        System.out.println("Valid emails " + validEmails.size());
+    }
 
 }
